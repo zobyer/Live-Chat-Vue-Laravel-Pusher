@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\chatRoom;
 use App\Models\chatMessage;
 use Illuminate\Support\Facades\Auth;
+use App\Events\NewChatMessage;
 
 class ChatController extends Controller
 {
@@ -28,6 +29,8 @@ class ChatController extends Controller
         $newmessage->message = $req->message;
 
         $newmessage->save();
+
+        broadcast(new NewChatMessage($newmessage))->toOthers();
 
         return $newmessage;
     }
