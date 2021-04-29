@@ -49,6 +49,7 @@
                 if (oldval.id){
                     this.disconnect(oldval);
                 }
+                 console.log("called")
                 this.connect();
             }
         },
@@ -59,6 +60,7 @@
                     this.getmessages();
                     window.Echo.private("chat."+ this.currentRoom.id)
                     .listen('.message.new', e=>{
+                        
                         vm.getmessages();
                     });
                 }
@@ -85,6 +87,7 @@
                 axios.get('/chat/room/'+ this.currentRoom.id+'/messages')
                 .then( response =>{
                     this.messages = response.data;
+                   
                 })
                 .catch( error=>{
                     console.log("error in getmessages");

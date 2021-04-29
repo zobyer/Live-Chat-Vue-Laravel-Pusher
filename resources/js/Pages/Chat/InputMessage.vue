@@ -36,6 +36,7 @@ export default {
                 if ( responce.status == 201){
                     this.message = '';
                     this.$emit('Message_Sent');
+                    console.warn("waring")
                 }
             })
             .catch(error =>{
